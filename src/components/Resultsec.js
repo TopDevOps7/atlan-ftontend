@@ -48,35 +48,47 @@ class Resultsec extends Component {
             <div>Wrong query</div>
           ) : (
             <table>
-              {keyary.length === 0 ? (
+              {Array.isArray(keyary) ? (
+                keyary.length === 0 ? (
+                  <tfoot>
+                    <tr>
+                      <td colSpan={"100%"}>No Data</td>
+                    </tr>
+                  </tfoot>
+                ) : (
+                  <thead>
+                    <tr>
+                      {keyary.map((item, key) => {
+                        return <th key={key}>{item}</th>;
+                      })}
+                    </tr>
+                  </thead>
+                )
+              ) : (
                 <tfoot>
                   <tr>
                     <td colSpan={"100%"}>No Data</td>
                   </tr>
                 </tfoot>
-              ) : (
-                <thead>
-                  <tr>
-                    {keyary.map((item, key) => {
-                      return <th key={key}>{item}</th>;
-                    })}
-                  </tr>
-                </thead>
               )}
 
-              {tableresult.length === 0 ? null : (
-                <tbody>
-                  {tableresult.map((item, key) => {
-                    return (
-                      <tr key={key}>
-                        {keyary.map((items, keys) => {
-                          return <td key={keys}>{item[items]}</td>;
-                        })}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              )}
+              {Array.isArray(tableresult) ? (
+                tableresult.length === 0 ? null : (
+                  <tbody>
+                    {tableresult.map((item, key) => {
+                      return (
+                        <tr key={key}>
+                          {Array.isArray(keyary)
+                            ? keyary.map((items, keys) => {
+                                return <td key={keys}>{item[items]}</td>;
+                              })
+                            : null}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                )
+              ) : null}
             </table>
           )}
         </div>

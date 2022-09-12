@@ -1,4 +1,4 @@
-## Table of Contents
+## Contents
 
 1. A basic overview of your project.
 

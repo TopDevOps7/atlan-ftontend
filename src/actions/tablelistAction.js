@@ -12,7 +12,7 @@ import {
 export const getData = () => (dispatch) => {
   dispatch(setTablelistloading());
   axios
-    .get("/api/tablelist/getdata")
+    .get("https://backend-atlan.herokuapp.com/api/tablelist/getdata")
     .then((res) =>
       dispatch({
         type: TABLE_LIST_DATA,
@@ -31,7 +31,9 @@ export const getData = () => (dispatch) => {
 export const getTableData = (tablename) => (dispatch) => {
   dispatch(setDataloading());
   axios
-    .get(`/api/tablelist/gettabledata/${tablename}`)
+    .get(
+      `https://backend-atlan.herokuapp.com/api/tablelist/gettabledata/${tablename}`
+    )
     .then((res) =>
       dispatch({
         type: TABLE_RESULT_DATA,
@@ -50,7 +52,10 @@ export const getTableData = (tablename) => (dispatch) => {
 export const querySql = (querydata) => (dispatch) => {
   dispatch(setDataloading());
   axios
-    .post("/api/tablelist/querysql", querydata)
+    .post(
+      "https://backend-atlan.herokuapp.com/api/tablelist/querysql",
+      querydata
+    )
     .then((res) => {
       if (res.data.fieldCount === undefined) {
         dispatch({

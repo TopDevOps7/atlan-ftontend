@@ -43,14 +43,21 @@ class Tablelist extends Component {
               <Loading />
             ) : (
               <ul>
-                {tablelist.length !== 0
-                  ? tablelist.map((item, key) => {
-                      return (
-                        <li key={key} onClick={() => this.showTableData(item.Tables_in_sql10518768)}>
-                          {item.Tables_in_sql10518768}
-                        </li>
-                      );
-                    })
+                {Array.isArray(tablelist)
+                  ? tablelist.length !== 0
+                    ? tablelist.map((item, key) => {
+                        return (
+                          <li
+                            key={key}
+                            onClick={() =>
+                              this.showTableData(item.Tables_in_sql10518768)
+                            }
+                          >
+                            {item.Tables_in_sql10518768}
+                          </li>
+                        );
+                      })
+                    : null
                   : null}
               </ul>
             )}
